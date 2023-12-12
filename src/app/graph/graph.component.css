@@ -1,0 +1,10 @@
+#myChart {
+  /* height: 150px !important; */
+  font-size: 20px !important;
+  /* margin-right: 22.4px;*/
+  margin-left: -25px;
+}
+#myChart canvas {
+  height: 150px !important;
+  max-width: 97% !important;
+}
