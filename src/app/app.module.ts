@@ -6,6 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { MovieticketComponent } from './movieticket/movieticket.component';
 import { UsersComponent } from './users/users.component';
 import { GraphComponent } from './graph/graph.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,10 @@ import { GraphComponent } from './graph/graph.component';
     HeaderComponent,
     MovieticketComponent,
     UsersComponent,
-    GraphComponent
+    GraphComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, NgxPaginationModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

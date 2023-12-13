@@ -55,130 +55,39 @@
   </thead>
 
   <tbody>
-    <tr>
-      <th>1</th>
+    <tr
+      *ngFor="
+        let user of users | paginate : { itemsPerPage: 4, currentPage: p }
+      "
+    >
+      <th>{{ user.id }}</th>
       <td>
         <div class="person">
-          <span>Ma</span>
+          <img src="{{ user.img }}" alt="avatar" />
+          <!-- <span>Ma</span> -->
           <div class="person_info">
-            <h2>Ahmed Mahmoud</h2>
-            <h6>0123456789</h6>
+            <h2>{{ user.name }}</h2>
+            <h6>{{ user.phone }}</h6>
           </div>
         </div>
       </td>
-      <td class="english_table">C-101</td>
-      <td class="english_table">$40</td>
+      <td class="english_table">{{ user.ticketNumber }}</td>
+      <td class="english_table">{{ user.rateTicket }}</td>
       <td>
         <div class="tooltip-top">
-          Cinema Misr, Mall of Arabia, Burj Al-Atan, Saraya Al-Qubba...
-          <span class="tooltiptext"> Sidnawi Mall, Burj Al Arab </span>
+          {{ user.cinemaName }}
+          <span class="tooltiptext"> {{ user.cinemaComp }}</span>
         </div>
       </td>
-      <td>1</td>
-      <td>Once</td>
+      <td>{{ user.numOfPepole }}</td>
+      <td>{{ user.numOfPurchases }}</td>
       <td>
         <div class="ticket">
           <span class="ticket-icon">
             <img src="./assets/bagesIcon.png" alt="pagesIcon" />
           </span>
           <div class="ticket-number">
-            <h4>Ticket No. 45.pdf</h4>
-            <h6>9mb . PDF</h6>
-          </div>
-          <div class="ticket-button">
-            <img src="./assets/downloadicon.png" alt="download" />
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>
-        <div class="person">
-          <img src="./assets/Avatar2.png" alt="avatar" />
-          <!-- <span>Ma</span> -->
-          <div class="person_info">
-            <h2>Muhammad Al-Ghareeb</h2>
-            <h6>0123456789</h6>
-          </div>
-        </div>
-      </td>
-      <td class="english_table">C-102</td>
-      <td class="english_table">$30</td>
-      <td>Cinema Misr, Mall of Arabia, Burj Al-Atan, Saraya Al-Qubba...</td>
-      <td>1</td>
-      <td>Once</td>
-      <td>
-        <div class="ticket">
-          <span class="ticket-icon">
-            <img src="./assets/bagesIcon.png" alt="pagesIcon" />
-          </span>
-          <div class="ticket-number">
-            <h4>Ticket No. 45.pdf</h4>
-            <h6>9mb . PDF</h6>
-          </div>
-          <div class="ticket-button">
-            <img src="./assets/downloadicon.png" alt="download" />
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>
-        <div class="person">
-          <img src="./assets/Avatar.png" alt="avatar" />
-          <!-- <span>Ma</span> -->
-          <div class="person_info">
-            <h2>Muhammad Al-Ghareeb</h2>
-            <h6>0123456789</h6>
-          </div>
-        </div>
-      </td>
-      <td class="english_table">C-102</td>
-      <td class="english_table">$45</td>
-      <td>Cinema Misr, Mall of Arabia, Burj Al-Atan, Saraya Al-Qubba...</td>
-      <td>1</td>
-      <td>Once</td>
-      <td>
-        <div class="ticket">
-          <span class="ticket-icon">
-            <img src="./assets/bagesIcon.png" alt="pagesIcon" />
-          </span>
-          <div class="ticket-number">
-            <h4>Ticket No. 45.pdf</h4>
-            <h6>9mb . PDF</h6>
-          </div>
-          <div class="ticket-button">
-            <img src="./assets/downloadicon.png" alt="download" />
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>
-        <div class="person">
-          <span style="background: #898e95">Ma</span>
-          <div class="person_info">
-            <h2>Muhammad Al-Ghareeb</h2>
-            <h6>0123456789</h6>
-          </div>
-        </div>
-      </td>
-      <td class="english_table">C-103</td>
-      <td class="english_table">$54</td>
-      <td>Cinema Misr, Mall of Arabia, Burj Al-Atan, Saraya Al-Qubba...</td>
-
-      <td>1</td>
-      <td>Once</td>
-      <td>
-        <div class="ticket">
-          <span class="ticket-icon">
-            <img src="./assets/bagesIcon.png" alt="pagesIcon" />
-          </span>
-          <div class="ticket-number">
-            <h4>Ticket No. 45.pdf</h4>
+            <h4>Ticket No. {{ user.ticket }}.pdf</h4>
             <h6>9mb . PDF</h6>
           </div>
           <div class="ticket-button">
@@ -194,22 +103,20 @@
     <p>Display</p>
     <div class="display-count">
       <select name="rows" id="row">
-        <option value="20">20</option>
-        <option value="40">100</option>
-
-        <option value="100">250</option>
+        <option value="20">{{ numofrecors }}</option>
       </select>
       <img src="./assets/Chevron Down.png" />
     </div>
-    <p>Out of 250</p>
+    <p>Out of {{ users.length }}</p>
   </div>
+
   <div class="pagantion">
-    <img src="./assets/RightArrow.png" />
-    <li class="active">1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-    <img src="./assets/leftArrow.png" />
+    <img src="./assets/RightArrow.png" (click)="goBack()" />
+    <li [ngClass]="{ active: p === 1 }" (click)="setOne()">1</li>
+    <li [ngClass]="{ active: p === 2 }" (click)="setTwo()">2</li>
+    <li [ngClass]="{ active: p === 3 }" (click)="setThree()">3</li>
+    <li [ngClass]="{ active: p === 4 }" (click)="setFour()">4</li>
+    <li [ngClass]="{ active: p === 5 }" (click)="setFive()">5</li>
+    <img src="./assets/leftArrow.png" (click)="goTo()" />
   </div>
 </div>
