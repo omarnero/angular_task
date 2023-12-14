@@ -12,6 +12,16 @@ import { Chart } from 'chart.js';
   styleUrl: './graph.component.css',
 })
 export class GraphComponent {
+  data: any;
+  lang: string;
+  constructor() {
+    this.lang = localStorage.getItem('lang');
+    if (this.lang === 'ar') {
+      this.data = [2.5, 3.7, 0.5, 2.2, 4, 2.5, 3.5, 3, 2.8, 1.7, 1, 3.5];
+    } else {
+      this.data = [3.5, 1, 1.7, 2.8, 3, 3.5, 2.5, 4, 2.2, 0.5, 3.7, 2.5];
+    }
+  }
   @ViewChild('canvas') canvas: ElementRef;
   chart: any;
   ngAfterViewInit() {
@@ -35,7 +45,7 @@ export class GraphComponent {
         datasets: [
           {
             label: 'Population',
-            data: [3.5, 1, 1.7, 2.8, 3, 3.5, 2.5, 4, 2.2, 0.5, 3.7, 2.5],
+            data: this.data,
             backgroundColor: 'rgba(138, 116, 249, .1)',
             borderWidth: 3,
             borderColor: '#8A74F9',

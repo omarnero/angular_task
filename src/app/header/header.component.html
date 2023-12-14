@@ -1,14 +1,20 @@
 <header class="ticket-header wow animate__animated animate__bounce">
   <div class="header-back">
     <span>
-      <img src="./assets/arrow-back-8-16.png" />
+      <img *ngIf="lang === 'en'" src="./assets/arrow-back-8-16.png" />
+      <img *ngIf="lang === 'ar'" src="./assets/right-arrow.png" width="70%" />
     </span>
-    <h2>Ticket no # 2342</h2>
+    <h2 [ngClass]="{ header__ar: lang === 'ar' }">
+      {{ "TICKET_NOM" | translate }}
+    </h2>
   </div>
   <div class="btn-edit">
     <button>
-      <span>Edit</span>
-      <img src="./assets/edit.png" />
+      <img *ngIf="lang === 'ar'" src="./assets/edit.png" />
+      <span>{{ "edit" | translate }}</span>
+      <img *ngIf="lang === 'en'" src="./assets/edit.png" />
     </button>
+    <button (click)="setEn()" *ngIf="lang === 'ar'">En</button>
+    <button (click)="setAr()" *ngIf="lang === 'en'">Ar</button>
   </div>
 </header>

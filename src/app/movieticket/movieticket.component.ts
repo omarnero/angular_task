@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './movieticket.component.css',
 })
 export class MovieticketComponent {
-  // fetch an api to get discount and date to clac it and store it in var
+  lang: string;
+  constructor() {
+    this.lang = localStorage.getItem('lang');
+  }
   discount = 25;
   date = 'July 15, 2023';
 }

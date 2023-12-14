@@ -1,27 +1,38 @@
 <section class="search">
   <div class="search-action">
-    <h3>Ticket sales</h3>
+    <h3>{{ "SALES" | translate }}</h3>
     <div class="search-filed">
       <img src="./assets/search-normal.png" alt="search-icon" />
-      <input type="search" placeholder="Search ..." results />
+      <input
+        *ngIf="lang === 'en'"
+        type="search"
+        placeholder="Search ..."
+        results
+      />
+      <input
+        *ngIf="lang === 'ar'"
+        type="search"
+        placeholder="بحث عن ..."
+        results
+      />
     </div>
     <button><img src="./assets/updown.png " /></button>
     <button><img src="./assets/setting.png" /></button>
   </div>
   <div class="sumbit-ticket">
     <input type="checkbox" class="toogal" />
-    <h4>Activated</h4>
-    <button class="reserve">Book a new ticket</button>
+    <h4>{{ "Act" | translate }}</h4>
+    <button class="reserve">{{ "BOOK" | translate }}</button>
   </div>
 </section>
 <table>
   <thead>
     <tr>
       <th>#</th>
-      <th>the user</th>
-      <th>ticket number</th>
+      <th>{{ "THEUSER" | translate }}</th>
+      <th>{{ "TICKETNUM" | translate }}</th>
       <th>
-        Rate the ticket
+        {{ "TICKETRATE" | translate }}
         <svg
           width="15"
           height="16"
@@ -47,10 +58,10 @@
           />
         </svg>
       </th>
-      <th>Cinemas</th>
-      <th>The number of people</th>
-      <th>Number of purchases</th>
-      <th>The ticket</th>
+      <th>{{ "CINEMAS" | translate }}</th>
+      <th>{{ "NUMOFPEOPLE" | translate }}</th>
+      <th>{{ "NUMOFPUR" | translate }}</th>
+      <th>{{ "THETICKET" | translate }}</th>
     </tr>
   </thead>
 
@@ -63,11 +74,18 @@
       <th>{{ user.id }}</th>
       <td>
         <div class="person">
-          <img src="{{ user.img }}" alt="avatar" />
+          <img
+            width="20px"
+            height="20px"
+            style="border-radius: 50%"
+            src="{{ user.img }}"
+            alt="avatar"
+          />
           <!-- <span>Ma</span> -->
           <div class="person_info">
-            <h2>{{ user.name }}</h2>
-            <h6>{{ user.phone }}</h6>
+            <h2 *ngIf="lang === 'en'">{{ user.name }}</h2>
+            <h2 *ngIf="lang === 'ar'">{{ user.nameAr }}</h2>
+            <h6>0123456789</h6>
           </div>
         </div>
       </td>
@@ -75,19 +93,19 @@
       <td class="english_table">{{ user.rateTicket }}</td>
       <td>
         <div class="tooltip-top">
-          {{ user.cinemaName }}
-          <span class="tooltiptext"> {{ user.cinemaComp }}</span>
+          {{ "CINEMANAME" | translate }}
+          <span class="tooltiptext"> {{ "CINCOMP" | translate }} </span>
         </div>
       </td>
-      <td>{{ user.numOfPepole }}</td>
-      <td>{{ user.numOfPurchases }}</td>
+      <td>1</td>
+      <td>{{ "NUMOFBUY" | translate }}</td>
       <td>
         <div class="ticket">
           <span class="ticket-icon">
             <img src="./assets/bagesIcon.png" alt="pagesIcon" />
           </span>
           <div class="ticket-number">
-            <h4>Ticket No. {{ user.ticket }}.pdf</h4>
+            <h4>{{ "TICKNUM" | translate }}</h4>
             <h6>9mb . PDF</h6>
           </div>
           <div class="ticket-button">
@@ -100,23 +118,44 @@
 </table>
 <div class="controls wow animate__animated animate__backInUp">
   <div class="select">
-    <p>Display</p>
+    <p>{{ "DISPLAY" | translate }}</p>
     <div class="display-count">
+      <img *ngIf="lang === 'ar'" src="./assets/Chevron Down.png" />
       <select name="rows" id="row">
         <option value="20">{{ numofrecors }}</option>
       </select>
-      <img src="./assets/Chevron Down.png" />
+      <img *ngIf="lang === 'en'" src="./assets/Chevron Down.png" />
     </div>
-    <p>Out of {{ users.length }}</p>
+    <p>{{ "OUTOF" | translate }} {{ users.length }}</p>
   </div>
 
   <div class="pagantion">
-    <img src="./assets/RightArrow.png" (click)="goBack()" />
+    <img
+      src="./assets/left-page.png"
+      (click)="goBack()"
+      *ngIf="lang === 'en'"
+      width="10px"
+      height="10px"
+    />
+    <img
+      src="./assets/right-page.png"
+      (click)="goBack()"
+      *ngIf="lang === 'ar'"
+      width="10px"
+      height="10px"
+    />
     <li [ngClass]="{ active: p === 1 }" (click)="setOne()">1</li>
     <li [ngClass]="{ active: p === 2 }" (click)="setTwo()">2</li>
     <li [ngClass]="{ active: p === 3 }" (click)="setThree()">3</li>
     <li [ngClass]="{ active: p === 4 }" (click)="setFour()">4</li>
     <li [ngClass]="{ active: p === 5 }" (click)="setFive()">5</li>
-    <img src="./assets/leftArrow.png" (click)="goTo()" />
+    <img src="./assets/RightArrow.png" (click)="goTo()" *ngIf="lang === 'ar'" />
+    <img
+      src="./assets/right-page.png"
+      (click)="goTo()"
+      *ngIf="lang === 'en'"
+      width="10px"
+      height="10px"
+    />
   </div>
 </div>

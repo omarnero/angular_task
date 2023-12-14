@@ -1,7 +1,33 @@
+@font-face {
+  font-family: Neo Sans Arabic;
+  src: url("./fonts/NeoSans.ttf");
+}
+@font-face {
+  font-family: Neo Sans bold;
+  src: url("./fonts/NeoSansArabicBold.woff");
+}
+html:lang(ar) * {
+  direction: rtl;
+  font-family: Neo Sans Arabic !important;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+body:lang(ar) {
+  background: #ccc;
+  color: #000;
+  direction: ltr;
+  background: #f3f5f7;
+  margin-right: 137px;
+  margin-top: 76px;
+  margin-bottom: 37px;
+  margin-left: 30px;
+  max-width: 1500px;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 body {
   background: #ccc;
@@ -51,6 +77,10 @@ body {
   align-items: center;
   gap: 7px;
 }
+.btn-edit {
+  display: flex;
+  gap: 10px;
+}
 .btn-edit button {
   display: flex;
   align-items: center;
@@ -72,6 +102,7 @@ body {
   font-weight: 400;
   line-height: 28px;
 }
+
 .grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -116,6 +147,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8.9px;
+  max-width: 100%;
 }
 .year-btn button {
   width: 67.371px;
@@ -141,6 +173,7 @@ body {
   gap: 28.4px;
   margin: 19px 22px;
   padding-bottom: 22px;
+  max-width: 100%;
 }
 .years p {
   color: #9291a5;
@@ -352,7 +385,7 @@ body {
 .discount {
   margin-top: 75px;
   margin-left: 27px;
-
+  margin-right: 27px;
   margin-bottom: 10px;
   color: #fff;
 
@@ -366,6 +399,7 @@ body {
   display: flex;
   gap: 17px;
   margin-left: 27px;
+  margin-right: 27px;
 }
 .percent h3 {
   color: #fff;
@@ -441,12 +475,17 @@ body {
   align-items: center;
   gap: 5px;
 }
-.search-filed > img {
+.search-filed img {
   margin-left: 10px;
+}
+.search-filed img:lang(ar) {
+  margin-right: 10px;
+  margin-left: 0;
 }
 .search-filed > input {
   flex: 1;
   height: 70%;
+  width: 100%;
   border: none;
   outline: none;
   background: #fff;
@@ -565,6 +604,7 @@ td {
   padding-top: 14.6px;
   padding-bottom: 16.3px;
   padding-left: 6px;
+  padding-right: 6px;
 }
 .parent {
   margin: 6px;
@@ -607,7 +647,7 @@ tbody th {
   display: flex;
   gap: 7.5px;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .person img {
   width: 29.8px;
@@ -802,6 +842,11 @@ tbody th {
   }
 }
 @media (max-width: 980px) {
+}
+@media (max-width: 980px) {
+  body:lang(ar) {
+    margin: 37px 30px;
+  }
   body {
     margin: 37px 30px;
   }
@@ -815,6 +860,12 @@ tbody th {
   body {
     overflow-x: hidden;
   }
+  .graph {
+    max-width: 600px;
+  }
+  .years {
+    gap: 22px;
+  }
 }
 @media (max-width: 550px) {
   .ticket-header {
@@ -824,11 +875,23 @@ tbody th {
     align-items: center;
     justify-content: center;
   }
+  body:lang(ar) {
+    margin: 20px 15px;
+  }
+  .graph {
+    max-width: 450px;
+  }
+  .years {
+    gap: 13px;
+  }
   body {
     margin: 20px 15px;
   }
   table {
     width: 600px;
+  }
+  table:lang(ar) {
+    max-width: 600px;
     font-size: 9px;
   }
   .person_info h2 {
@@ -871,7 +934,10 @@ tbody th {
     margin-left: 0;
   }
   .controls {
-    width: 600px !important;
+    width: 600px;
+  }
+  .controls:lang(ar) {
+    max-width: 600px !important;
   }
   .search-action {
     margin-left: 40px;
@@ -880,5 +946,37 @@ tbody th {
   .sumbit-ticket {
     margin-left: 40px;
     /* margin-left: 40px; */
+  }
+}
+@media (max-width: 450px) {
+  .search {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  .search-action h3 {
+    margin: 0;
+  }
+  .search-action {
+    margin-left: 0px;
+    /* margin-left: 40px; */
+  }
+  .search-filed {
+    max-width: 120px;
+  }
+  body:lang(ar) {
+    margin: 15px 0px;
+  }
+  .graph {
+    max-width: 370px;
+  }
+  .years {
+    font-size: 9px;
+    gap: 10px;
+  }
+  .years p {
+    font-size: 8px;
+  }
+  .controls:lang(ar) {
+    max-width: 800px !important;
   }
 }
